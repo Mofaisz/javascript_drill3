@@ -1,10 +1,13 @@
-//Q3 Find all users with masters Degree.
-function masterDegreeHolder(users){
-    masterDegree=[];
-    for(let user in users){
-        if(users[user].qualification==="Masters"){
-            masterDegree.push(user)
-        }
-    }return masterDegree
+function masterDegreeHolder(users) {
+  //Initialising an empty array
+  masterDegree = [];
+  //Iterating every user from users object
+  for (let user in users) {
+    //Checks if Masters as qualification of users
+    if (users[user].qualification === "Masters") {
+      masterDegree.push(user); //Appends user if Masters as qualification
+    }
+  }
+  return masterDegree;
 }
-module.exports=masterDegreeHolder;
+module.exports = masterDegreeHolder;
