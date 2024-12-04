@@ -4,18 +4,24 @@ function getVideoGamePlayers(users) {
   if (!users) {
     return null;
   }
-  //Initialising an empty array
-  const videoGameUsers = [];
-  //Iterating every user from users object
-  for (let user in users) {
-    //checks if video games is included in users interests
-    if (users[user].interests[0].includes("Video Games")) {
-      videoGameUsers.push(user); //append if user is interested in video games
-    }
-  }
-  if (videoGameUsers.length > 0) {
+
+  // Extracting only keys of users to implement Array methods.
+  const videoGameUsers = Object.keys(users).reduce(
+    (accumulator, initialValue) => {
+      // checks wether video Games is included in interests
+      if (users[initialValue].interests[0].includes("Video Games")) {
+        accumulator.push(initialValue); //pushing initialValue(user name) into accumulator
+      }
+      return accumulator;
+    },
+    [] // taking accumulator as empty array
+  );
+
+  // checks if videoGameusers list is empty or not
+  if (Object.keys(videoGameUsers).length > 0) {
     return videoGameUsers;
   }
   return null;
 }
+
 module.exports = getVideoGamePlayers;
