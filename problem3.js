@@ -1,20 +1,28 @@
 function masterDegreeHolder(users) {
-  //Checks for falsy values 
+  //Checks for falsy values
   if (!users) {
     return null;
   }
-  //Initialising an empty array
-  masterDegree = [];
-  //Iterating every user from users object
-  for (let user in users) {
-    //Checks if Masters as qualification of users
-    if (users[user].qualification === "Masters") {
-      masterDegree.push(user); //Appends user if Masters as qualification
-    }
-  }//Checks if masterDegree has  some elements
+
+  /* 
+  Extracting only keys of users to implement Array methods,taking accumulator as empty array 
+  and initialValue as user of users.
+  */
+  const masterDegree = Object.keys(users).reduce(
+    (accumulator, initialValue) => {
+      // checks if user qualification is Master, if it push into accumultor
+      if (users[initialValue].qualification === "Masters") {
+        accumulator.push(initialValue);
+      }
+      return accumulator;
+    },
+    []
+  );
+
+  //Checks if masterDegree has  some elements
   if (masterDegree.length > 0) {
     return masterDegree;
   }
-  return null;  //returns null if nothing in masterDegree array
+  return null; //returns null if nothing in masterDegree array
 }
-module.exports = masterDegreeHolder;  
+module.exports = masterDegreeHolder;
