@@ -3,15 +3,19 @@ function usersNationalityGermany(users) {
   if (!users) {
     return null;
   }
-  //Initialising an empty array
-  const germanyUser = [];
-  //Iterating every user from users object
-  for (let user in users) {
-    //checks if germany as nationality of users
-    if (users[user].nationality === "Germany") {
-      germanyUser.push(user); //appends user if found nationality as germany
+
+  /* Extracting only keys of users to implement Array methods,taking accumulator as empty array 
+     and initialValue as user of users
+  */
+  const germanyUser = Object.keys(users).reduce((accumulator, initialValue) => {
+    // checks for nationality as germany
+    if (users[initialValue].nationality === "Germany") {
+      accumulator.push(initialValue);
     }
-  } //Checks if germany user has element and return array else null;
+    return accumulator;
+  }, []);
+
+  //Checks if germany user has element and return array else null;
   if (germanyUser.length > 0) {
     return germanyUser;
   }
